@@ -1,6 +1,7 @@
 package com.kamiski.springbootjwt.domain;
 
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Profile {
+public class Profile implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
@@ -19,5 +20,10 @@ public class Profile {
     private String name;
 
     private LocalDateTime dateRegister = LocalDateTime.now();
+
+    @Override
+    public String getAuthority() {
+        return this.name;
+    }
 
 }
