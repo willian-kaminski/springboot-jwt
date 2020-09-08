@@ -24,14 +24,16 @@ public class AuthenticationByToken extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain)
+            throws ServletException, IOException {
 
         String token = recoverHeaderToken(httpServletRequest);
 
         if(tokenService.isTokenValid(token)){
             authClient(token);
         }
+
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
 
     }
 
