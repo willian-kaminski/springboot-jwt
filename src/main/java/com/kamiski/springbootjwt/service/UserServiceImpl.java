@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
                 .name(userFormUpdate.getName())
                 .email(userFormUpdate.getEmail())
                 .password(userFormUpdate.getPassword())
-                .profileList(userFormUpdate.getProfileList())
+                .profiles(userFormUpdate.getProfileList())
                 .build();
 
         return userRepository.save(user);

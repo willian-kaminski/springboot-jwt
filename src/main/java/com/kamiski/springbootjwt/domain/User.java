@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Profile> profileList;
+    private List<Profile> profiles;
 
     private Boolean isNonExpired;
 
@@ -40,7 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.profileList;
+        return this.profiles;
     }
 
     @Override
