@@ -13,6 +13,8 @@ public interface UserService {
 
     Optional<User> findById(Long id);
 
+    Optional<User> findByEmail(String email);
+
     User create(UserForm userForm);
 
     User update(UserFormUpdate userFormUpdate);
