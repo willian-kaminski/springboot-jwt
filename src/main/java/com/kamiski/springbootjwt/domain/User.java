@@ -1,16 +1,19 @@
 package com.kamiski.springbootjwt.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
+@Builder
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -19,6 +22,9 @@ public class User {
 
     private String password;
 
-    private LocalDateTime dateRegister = LocalDateTime.now();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Profile> profileList;
+
+    private LocalDateTime dateRegister;
 
 }
