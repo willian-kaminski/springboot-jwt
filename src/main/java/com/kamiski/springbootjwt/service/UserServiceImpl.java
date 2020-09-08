@@ -40,6 +40,10 @@ public class UserServiceImpl implements UserService {
                 .email(userForm.getEmail())
                 .password(userForm.getPassword())
                 .dateRegister(LocalDateTime.now())
+                .isCredentialsNonExpired(true)
+                .isNonExpired(true)
+                .isNonLocked(true)
+                .isEnabled(true)
                 .build();
 
         return userRepository.save(user);
