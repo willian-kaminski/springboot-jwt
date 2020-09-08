@@ -30,7 +30,7 @@ public class TokenService {
         Date today = new Date();
 
         return Jwts.builder()
-                .setIssuer("")
+                .setIssuer("SpringBoot JWT")
                 .setSubject(user.getId().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(today.getTime() + Long.parseLong(expiration)))
