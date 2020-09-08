@@ -1,6 +1,6 @@
 package com.kamiski.springbootjwt.service;
 
-import com.kamiski.springbootjwt.domain.User;
+import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByEmail(s);
+        Optional<Users> user = userRepository.findByEmail(s);
         if(user.isPresent()){
             return user.get();
         }

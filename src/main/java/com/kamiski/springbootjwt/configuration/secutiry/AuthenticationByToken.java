@@ -1,6 +1,6 @@
 package com.kamiski.springbootjwt.configuration.secutiry;
 
-import com.kamiski.springbootjwt.domain.User;
+import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.repository.UserRepository;
 import com.kamiski.springbootjwt.service.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,9 +38,9 @@ public class AuthenticationByToken extends OncePerRequestFilter {
     private void authClient(String token) {
 
         Long userId = tokenService.getUserId(token);
-        User user = userRepository.findById(userId).get();
+        Users users = userRepository.findById(userId).get();
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(users, null, users.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
     }

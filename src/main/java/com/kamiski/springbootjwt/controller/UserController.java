@@ -2,7 +2,7 @@ package com.kamiski.springbootjwt.controller;
 
 import com.kamiski.springbootjwt.controller.form.UserForm;
 import com.kamiski.springbootjwt.controller.form.UserFormUpdate;
-import com.kamiski.springbootjwt.domain.User;
+import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,22 +20,22 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<Users>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
+    public ResponseEntity<Users> findById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id).get());
     }
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody @Valid UserForm userForm){
+    public ResponseEntity<Users> create(@RequestBody @Valid UserForm userForm){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(userForm));
     }
 
     @PutMapping
-    public ResponseEntity<User> update(@RequestBody @Valid UserFormUpdate userFormUpdate){
+    public ResponseEntity<Users> update(@RequestBody @Valid UserFormUpdate userFormUpdate){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.update(userFormUpdate));
     }
 

@@ -1,6 +1,6 @@
 package com.kamiski.springbootjwt.service;
 
-import com.kamiski.springbootjwt.domain.User;
+import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -26,12 +26,12 @@ public class TokenService {
 
     public String generateToken(Authentication authentication){
 
-        User user = (User) authentication.getPrincipal();
+        Users users = (Users) authentication.getPrincipal();
         Date today = new Date();
 
         return Jwts.builder()
                 .setIssuer("SpringBoot JWT")
-                .setSubject(user.getId().toString())
+                .setSubject(users.getId().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(today.getTime() + Long.parseLong(expiration)))
                 .signWith(SignatureAlgorithm.HS256, secret)

@@ -2,22 +2,22 @@ package com.kamiski.springbootjwt.service;
 
 import com.kamiski.springbootjwt.controller.form.UserForm;
 import com.kamiski.springbootjwt.controller.form.UserFormUpdate;
-import com.kamiski.springbootjwt.domain.User;
+import com.kamiski.springbootjwt.domain.Users;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
-    List<User> findAll();
+    List<Users> findAll();
 
-    Optional<User> findById(Long id);
+    Optional<Users> findById(Long id);
 
-    Optional<User> findByEmail(String email);
+    Optional<Users> findByEmail(String email);
 
-    User create(UserForm userForm);
+    Users create(UserForm userForm);
 
-    User update(UserFormUpdate userFormUpdate);
+    Users update(UserFormUpdate userFormUpdate);
 
     void deleteById(Long id);
 
