@@ -32,7 +32,7 @@ public class TokenService {
         return Jwts.builder()
                 .setIssuer("SpringBoot JWT")
                 .setSubject(users.getId().toString())
-                .setIssuedAt(new Date())
+                .setIssuedAt(today)
                 .setExpiration(new Date(today.getTime() + Long.parseLong(expiration)))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();

@@ -1,5 +1,6 @@
 package com.kamiski.springbootjwt.service;
 
+import com.kamiski.springbootjwt.component.HashGenerate;
 import com.kamiski.springbootjwt.controller.form.UserForm;
 import com.kamiski.springbootjwt.controller.form.UserFormUpdate;
 import com.kamiski.springbootjwt.domain.Users;
@@ -12,10 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private HashGenerate hashGenerate;
 
     @Override
     public List<Users> findAll() {
@@ -38,7 +42,7 @@ public class UserServiceImpl implements UserService {
         Users users = Users.builder()
                 .name(userForm.getName())
                 .email(userForm.getEmail())
-                .password(userForm.getPassword())
+                .password(hashGenerate.generateBCrypt(userForm.getPassword()))
                 .dateRegister(LocalDateTime.now())
                 .isCredentialsNonExpired(true)
                 .isNonExpired(true)
