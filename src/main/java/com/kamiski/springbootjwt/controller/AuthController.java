@@ -2,7 +2,7 @@ package com.kamiski.springbootjwt.controller;
 
 import com.kamiski.springbootjwt.controller.dto.TokenDto;
 import com.kamiski.springbootjwt.controller.form.AuthForm;
-import com.kamiski.springbootjwt.service.TokenService;
+import com.kamiski.springbootjwt.service.implementation.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

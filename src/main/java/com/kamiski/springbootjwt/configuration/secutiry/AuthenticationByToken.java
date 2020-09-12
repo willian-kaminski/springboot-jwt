@@ -2,7 +2,7 @@ package com.kamiski.springbootjwt.configuration.secutiry;
 
 import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.repository.UserRepository;
-import com.kamiski.springbootjwt.service.TokenService;
+import com.kamiski.springbootjwt.service.implementation.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;

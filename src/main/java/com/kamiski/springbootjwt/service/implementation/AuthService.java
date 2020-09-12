@@ -1,4 +1,4 @@
-package com.kamiski.springbootjwt.service;
+package com.kamiski.springbootjwt.service.implementation;
 
 import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.repository.UserRepository;

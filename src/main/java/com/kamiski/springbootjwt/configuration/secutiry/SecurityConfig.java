@@ -1,8 +1,8 @@
 package com.kamiski.springbootjwt.configuration.secutiry;
 
 import com.kamiski.springbootjwt.repository.UserRepository;
-import com.kamiski.springbootjwt.service.AuthService;
-import com.kamiski.springbootjwt.service.TokenService;
+import com.kamiski.springbootjwt.service.implementation.AuthService;
+import com.kamiski.springbootjwt.service.implementation.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

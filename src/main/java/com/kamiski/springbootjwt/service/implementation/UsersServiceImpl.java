@@ -1,10 +1,11 @@
-package com.kamiski.springbootjwt.service;
+package com.kamiski.springbootjwt.service.implementation;
 
 import com.kamiski.springbootjwt.component.HashGenerate;
 import com.kamiski.springbootjwt.controller.form.UserForm;
 import com.kamiski.springbootjwt.controller.form.UserFormUpdate;
 import com.kamiski.springbootjwt.domain.Users;
 import com.kamiski.springbootjwt.repository.UserRepository;
+import com.kamiski.springbootjwt.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
