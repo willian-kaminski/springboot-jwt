@@ -32,6 +32,8 @@ public class Users implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Profile> profiles;
 
+    private Integer validationCode;
+
     private Boolean isNonExpired;
 
     private Boolean isNonLocked;

@@ -44,6 +44,7 @@ public class UsersServiceImpl implements UsersService {
                 .name(userForm.getName())
                 .email(userForm.getEmail())
                 .password(hashGenerate.generateBCrypt(userForm.getPassword()))
+                .validationCode(hashGenerate.generateValidationCode())
                 .dateRegister(LocalDateTime.now())
                 .isCredentialsNonExpired(true)
                 .isNonExpired(true)
