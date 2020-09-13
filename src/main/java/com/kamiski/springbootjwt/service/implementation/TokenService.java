@@ -1,10 +1,10 @@
 package com.kamiski.springbootjwt.service.implementation;
 
 import com.kamiski.springbootjwt.domain.Users;
+import com.kamiski.springbootjwt.exception.ExpiredTokenException;
+import com.kamiski.springbootjwt.exception.SignatureTokenException;
 import com.kamiski.springbootjwt.repository.UserRepository;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -40,13 +40,14 @@ public class TokenService {
     }
 
     public boolean isTokenValid(String headerToken){
+
         try {
             Jwts.parser().setSigningKey(this.secret).parseClaimsJws(headerToken);
             return true;
         }catch (Exception e){
-            System.out.println(e.getMessage());
             return false;
         }
+
     }
 
     public Long getUserId(String token){

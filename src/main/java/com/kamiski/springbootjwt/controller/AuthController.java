@@ -2,6 +2,7 @@ package com.kamiski.springbootjwt.controller;
 
 import com.kamiski.springbootjwt.controller.dto.TokenDto;
 import com.kamiski.springbootjwt.controller.form.AuthForm;
+import com.kamiski.springbootjwt.service.AuthService;
 import com.kamiski.springbootjwt.service.implementation.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,26 +23,14 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthService authService;
 
     @Autowired
     private TokenService tokenService;
 
     @PostMapping
     public ResponseEntity<TokenDto> authenticate(@RequestBody @Valid AuthForm authForm){
-
-        UsernamePasswordAuthenticationToken dataAuth = new UsernamePasswordAuthenticationToken(authForm.getEmail(), authForm.getPassword());
-
-        try {
-
-            Authentication authentication = authenticationManager.authenticate(dataAuth);
-            String token = tokenService.generateToken(authentication);
-            return ResponseEntity.status(HttpStatus.OK).body(new TokenDto(token, "Bearer"));
-
-        }catch (AuthenticationException authenticationException){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-
+        return ResponseEntity.status(HttpStatus.OK).body(authService.authenticateClient(authForm, tokenService));
     }
 
 }

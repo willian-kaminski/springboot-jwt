@@ -14,6 +14,10 @@ public class UserFormUpdate {
 
     @NotNull
     @NotEmpty
+    private Long id;
+
+    @NotNull
+    @NotEmpty
     @Length(min = 5, max = 150)
     private String name;
 
