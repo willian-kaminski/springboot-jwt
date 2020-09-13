@@ -32,7 +32,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Users> create(@RequestBody @Valid UserForm userForm){
-        return ResponseEntity.status(HttpStatus.CREATED).body(usersService.create(userForm));
+        Users users = usersService.create(userForm);
+        usersService.sendValidationCode(users);
+        return ResponseEntity.status(HttpStatus.CREATED).body(users);
     }
 
     @PutMapping

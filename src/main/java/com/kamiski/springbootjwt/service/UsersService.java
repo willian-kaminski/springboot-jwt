@@ -25,4 +25,6 @@ public interface UsersService {
 
     ResponseEntity setUserIsValid(UserAuthForm authForm);
 
+    void sendValidationCode(Users users);
+
 }

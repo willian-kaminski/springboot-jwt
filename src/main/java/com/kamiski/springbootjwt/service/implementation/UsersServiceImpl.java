@@ -31,6 +31,9 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private RecordValidation recordValidation;
 
+    @Autowired
+    private EmailServiceImpl emailService;
+
     @Override
     public List<Users> findAll() {
         return userRepository.findAll();
@@ -66,6 +69,7 @@ public class UsersServiceImpl implements UsersService {
                 .build();
 
         return userRepository.save(users);
+
     }
 
     @Override
@@ -105,5 +109,11 @@ public class UsersServiceImpl implements UsersService {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 
     }
+
+    @Override
+    public void sendValidationCode(Users users) {
+        emailService.sendSimpleEmail(users);
+    }
+
 
 }

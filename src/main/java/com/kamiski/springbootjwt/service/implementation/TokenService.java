@@ -18,10 +18,10 @@ public class TokenService {
     @Autowired
     private UserRepository userRepository;
 
-    @Value("${forum.jwt.secret}")
+    @Value("${api.jwt.secret}")
     private String secret;
 
-    @Value("${forum.jwt.expiration}")
+    @Value("${api.jwt.expiration}")
     private String expiration;
 
     public String generateToken(Authentication authentication){
