@@ -19,6 +19,19 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(UserLocked.class)
+    public ResponseEntity<UserLocked> handleUserLocked(UserLocked e){
+        return new ResponseEntity(
+                ExceptionDetail.builder()
+                        .title("Forbidden")
+                        .status(HttpStatus.FORBIDDEN.value())
+                        .detail(e.getClass().getName())
+                        .developerMessage(e.getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .build(), HttpStatus.NOT_FOUND
+        );
+    }
+
     @ExceptionHandler(SignatureTokenException.class)
     public ResponseEntity<SignatureTokenException> handleInvalidToken(SignatureTokenException e){
         return new ResponseEntity(

@@ -1,6 +1,7 @@
 package com.kamiski.springbootjwt.service.implementation;
 
 import com.kamiski.springbootjwt.component.HashGenerate;
+import com.kamiski.springbootjwt.controller.form.UserAuthForm;
 import com.kamiski.springbootjwt.controller.form.UserForm;
 import com.kamiski.springbootjwt.controller.form.UserFormUpdate;
 import com.kamiski.springbootjwt.domain.Users;
@@ -9,6 +10,9 @@ import com.kamiski.springbootjwt.repository.UserRepository;
 import com.kamiski.springbootjwt.service.UsersService;
 import com.kamiski.springbootjwt.validation.RecordValidation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -57,7 +61,7 @@ public class UsersServiceImpl implements UsersService {
                 .dateRegister(LocalDateTime.now())
                 .isCredentialsNonExpired(true)
                 .isNonExpired(true)
-                .isNonLocked(true)
+                .isNonLocked(false)
                 .isEnabled(true)
                 .build();
 
@@ -84,6 +88,22 @@ public class UsersServiceImpl implements UsersService {
     public void deleteById(Long id) {
         recordValidation.verifyIfUserExistsById(id);
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public ResponseEntity setUserIsValid(UserAuthForm userAuthForm) {
+
+        if(userRepository.existsUserByEmailAndValidationCode(
+                userAuthForm.getEmail(),
+                userAuthForm.getCode())
+        ){
+            Users users = userRepository.findByEmail(userAuthForm.getEmail()).get();
+            users.setIsNonLocked(true);
+            userRepository.save(users);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+
     }
 
 }

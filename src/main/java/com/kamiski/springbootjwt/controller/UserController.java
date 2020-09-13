@@ -1,5 +1,6 @@
 package com.kamiski.springbootjwt.controller;
 
+import com.kamiski.springbootjwt.controller.form.UserAuthForm;
 import com.kamiski.springbootjwt.controller.form.UserForm;
 import com.kamiski.springbootjwt.controller.form.UserFormUpdate;
 import com.kamiski.springbootjwt.domain.Users;
@@ -43,6 +44,11 @@ public class UserController {
     public ResponseEntity deleteById(@PathVariable Long id){
         usersService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity authenticateUserByCode(@RequestBody @Valid UserAuthForm authForm){
+        return usersService.setUserIsValid(authForm);
     }
 
 }
